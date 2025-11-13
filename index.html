@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ObservableLab — Nutrition QA</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed; inset:0; z-index:0;"></div>
+  <div class="nav container">
+    <div class="brand"><span class="dot"></span><span>ObservableLab</span></div>
+    <div class="links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="notebooks.html">Notebooks</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="glow-line"></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card fade-up">
+        <h1>Nutrition Label QA — Automated detection & reporting</h1>
+        <p class="lead">Interactive notebooks and dashboards that validate nutrition labels, detect mislabels, and produce QA-ready reports for teams like GreenChoice.</p>
+        <div class="cta">
+          <a class="btn" href="explore.html">Explore Notebooks</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container fade-up">
+      <h2 style="color:#cfe7ff;font-weight:800;margin-bottom:1rem;">Featured Notebooks & Demos</h2>
+      <div class="grid">
+        <article class="card"><h3>Data Quality Checks</h3><p>Rule-based checks for missing units, out-of-range values, and inconsistent totals.</p></article>
+        <article class="card"><h3>Anomaly Detection</h3><p>Isolation Forest & DBSCAN demo notebooks highlighting likely mislabeled entries.</p></article>
+        <article class="card"><h3>Reporting</h3><p>Auto-generated dashboards (Dash / Power BI) and exportable QA reports for teams.</p></article>
+        <article class="card"><h3>Pipeline Architecture</h3><p>ETL design, schema contracts, monitoring and scalability strategies.</p></article>
+        <article class="card"><h3>Demo Notebook</h3><p>Step-through demo showing anomaly flagging and correction workflow.</p></article>
+        <article class="card"><h3>Contribute</h3><p>How to run notebooks locally and integrate with CI for automated QA runs.</p></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer container">Built with ❤️ • Nutrition Label QA Automation • Deploy on Vercel</footer>
+
+  <script src="assets/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Notebooks — ObservableLab</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed; inset:0; z-index:0;"></div>
+  <div class="nav container">
+    <div class="brand"><span class="dot"></span><span>ObservableLab</span></div>
+    <div class="links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="notebooks.html">Notebooks</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="glow-line"></div>
+
+  <main class="container fade-up">
+    <h1 style="color:#fff;font-size:2rem;margin-bottom:1rem">Notebooks — Nutrition QA Demos</h1>
+    <p class="small">Interactive demos with simulated data showing anomaly detection and QA checks.</p>
+
+    <section id="dq" class="card" style="margin-bottom:1rem;">
+      <h2>Data Quality Checks</h2>
+      <p class="small">Preview of rule-based checks and sample CSV rows.</p>
+      <div style="margin-top:10px;"><pre style="background:#021124;padding:10px;border-radius:8px;color:#cfe7ff">id,name,calories,fat,protein,unit
+1,Almond Granola,250,10,6,g
+2,Blueberry Muffin,420,22,5,g
+3,Strange Cookie,120,,3,  <-- missing fat value and unit issue</pre></div>
+    </section>
+
+    <section id="ad" class="card" style="margin-bottom:1rem;">
+      <h2>Anomaly Detection (Isolation Forest demo)</h2>
+      <p class="small">Bar chart highlights likely mislabeled nutrition entries (simulated).</p>
+      <canvas id="caloriesChart" style="max-width:100%;height:320px"></canvas>
+      <div style="height:10px"></div>
+      <canvas id="anomalyChart" style="max-width:100%;height:220px"></canvas>
+    </section>
+
+    <section id="reporting" class="card" style="margin-bottom:1rem;">
+      <h2>Reporting</h2>
+      <p class="small">Sample export options and dashboard preview (static).</p>
+      <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap">
+        <div class="card" style="padding:12px;min-width:220px"><strong>Download CSV</strong><div class="small">Export flagged rows</div></div>
+        <div class="card" style="padding:12px;min-width:220px"><strong>Open Dashboard</strong><div class="small">Open in Dash / Power BI (demo)</div></div>
+      </div>
+    </section>
+
+    <section id="arch" class="card" style="margin-bottom:1rem;">
+      <h2>Pipeline Architecture</h2>
+      <p class="small">ETL diagram and monitoring tips to ensure schema contracts and reliability.</p>
+    </section>
+
+    <section id="demo" class="card" style="margin-bottom:1rem;">
+      <h2>Demo Notebook</h2>
+      <p class="small">Step-through demo showing anomaly flagging and correction workflow.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer container">Built with ❤️ • Nutrition Label QA Automation • Deploy on Vercel</footer>
+
+<script>
+// simulate data and render Chart.js charts
+function generateData() {
+  const labels = [];
+  const calories = [];
+  const anomalyIdx = [];
+  for (let i=0;i<30;i++){
+    labels.push('Item '+(i+1));
+    let val = 180 + (Math.random()-0.5)*60;
+    if (Math.random() < 0.12) { val = Math.round(val * (Math.random()*3 + 1)); anomalyIdx.push(i); }
+    calories.push(Math.round(val));
+  }
+  return {labels: labels, calories: calories, anomalyIdx: anomalyIdx};
+}
+
+function renderCharts() {
+  const data = generateData();
+  const ctx = document.getElementById('caloriesChart').getContext('2d');
+  const colors = data.calories.map(function(v,i){ return data.anomalyIdx.includes(i)? 'rgba(255,99,71,0.95)' : 'rgba(99, 102, 241, 0.9)'; });
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels: data.labels, datasets:[{label:'Calories', data: data.calories, backgroundColor: colors}]},
+    options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:false}} }
+  });
+
+  const ctx2 = document.getElementById('anomalyChart').getContext('2d');
+  const scores = data.calories.map(function(v,i){ return data.anomalyIdx.includes(i)? Math.random()*0.35+0.6 : Math.random()*0.45; });
+  new Chart(ctx2, {
+    type:'line',
+    data:{labels:data.labels,datasets:[{label:'Anomaly score', data:scores, borderColor:'rgba(255,215,0,0.95)', backgroundColor:'rgba(255,215,0,0.06)', fill:true, tension:0.25}]},
+    options:{responsive:true, plugins:{legend:{display:false}}, scales:{y:{min:0, max:1}} }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', function(){ renderCharts(); });
+</script>
+
+  <script src="assets/shared.js"></script>
+</body>
+</html>

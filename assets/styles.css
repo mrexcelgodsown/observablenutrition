@@ -1,0 +1,61 @@
+
+:root{
+  --bg1: #05071a;
+  --bg2: #000000;
+  --accent: #60a5fa;
+  --gold: #ffd166;
+  --muted: #cfe7ff;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 75%); color:var(--muted); -webkit-font-smoothing:antialiased;}
+a{color:var(--muted);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1rem;position:relative;z-index:2;}
+.nav{position:fixed;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1.2rem;z-index:80;background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.05));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,215,0,0.03);}
+.brand{font-weight:800;color:#fff;display:flex;gap:0.6rem;align-items:center;}
+.brand .dot{width:14px;height:14px;border-radius:999px;background:linear-gradient(90deg,var(--gold),#ffb84d);box-shadow:0 0 20px rgba(255,200,0,0.18);}
+.nav .links a{margin-left:0.8rem;font-weight:600;opacity:0.95;padding:8px 12px;border-radius:10px;transition:all .25s ease;}
+.nav .links a:hover{background:rgba(255,255,255,0.03);box-shadow:0 6px 18px rgba(0,0,0,0.6);transform:translateY(-3px);}
+
+.glow-line{position:absolute;left:0;right:0;height:8px;top:68px;background:linear-gradient(90deg, transparent,var(--gold)55, transparent);filter:blur(10px);z-index:5;opacity:0.9;animation:flow 6s linear infinite;}
+@keyframes flow{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+
+/* hero */
+.hero{min-height:68vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1rem;position:relative;z-index:2;}
+.hero-card{max-width:1100px;backdrop-filter: blur(8px);background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22));border-radius:18px;border:1px solid rgba(255,215,0,0.06);padding:3rem;box-shadow: 0 20px 60px rgba(0,0,0,0.6);transform:translateY(0);transition:transform .6s cubic-bezier(.2,.9,.2,1);}
+.hero-card:hover{transform:translateY(-6px)}
+
+h1{font-weight:800;font-size:clamp(1.6rem,4.2vw,3rem);color:#fff;margin:0 0 0.6rem 0;text-shadow:0 6px 30px rgba(0,130,255,0.06);}
+.lead{color:var(--muted);opacity:0.95;margin-top:0.6rem;font-size:1.05rem;line-height:1.5}
+.cta{margin-top:1.2rem;}
+.btn{display:inline-block;padding:0.7rem 1.2rem;border-radius:999px;font-weight:700;background:linear-gradient(90deg,var(--accent),#7dd3fc);color:#021124;box-shadow:0 10px 30px rgba(96,165,250,0.12);border:1px solid rgba(255,255,255,0.04);text-decoration:none;}
+
+/* grid and cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem;}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid{grid-template-columns:1fr;} .hero{padding:3.5rem 1rem;}}
+
+.card{background:var(--glass);border-radius:14px;padding:1.1rem;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(0,0,0,0.6);transition:transform .35s ease, box-shadow .35s ease}
+.card:hover{transform:translateY(-8px);box-shadow:0 22px 60px rgba(0,0,0,0.7);}
+.card h3{margin:0 0 6px 0;color:#fff;font-size:1.05rem}
+.card p{margin:0;color:var(--muted);opacity:0.95;font-size:0.95rem}
+
+/* notebooks list and preview */
+.preview{display:flex;gap:1rem;flex-wrap:wrap;margin-top:12px;}
+.preview .box{flex:1;min-width:220px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:12px;border-radius:10px;border:1px solid rgba(255,215,0,0.03)}
+
+/* contact form */
+.form-input{width:100%;padding:10px;border-radius:8px;background:#021124;border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+
+/* footer */
+.footer{padding:3rem 1rem;text-align:center;color:#9fbde6;opacity:0.9}
+
+/* subtle entrance */
+.fade-up{opacity:0;transform:translateY(12px);animation:enter .8s forwards ease;animation-delay:0.12s}
+@keyframes enter{to{opacity:1;transform:none}}
+
+/* floating orbs for depth */
+.orb{position:absolute;border-radius:50%;opacity:0.7;background:radial-gradient(circle, rgba(255,209,102,0.8), transparent 60%);filter:blur(6px);pointer-events:none;z-index:1;}
+
+/* page transition (simple) */
+.page-enter{opacity:0;transform:translateY(6px)}.page-enter-active{opacity:1;transform:none;transition:all .45s ease}

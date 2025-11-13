@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — ObservableLab</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+  <div id="particles-js" style="position:fixed; inset:0; z-index:0;"></div>
+  <div class="nav container">
+    <div class="brand"><span class="dot"></span><span>ObservableLab</span></div>
+    <div class="links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="notebooks.html">Notebooks</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </div>
+  <div class="glow-line"></div>
+
+  <main class="container fade-up">
+    <h1 style="color:#fff;font-size:2rem;margin-bottom:1rem">Contact</h1>
+    <div class="card" style="max-width:720px;">
+      <form id="contactForm" action="https://formsubmit.co/mrexcelgodsown@gmail.com" method="POST">
+        <!-- FormSubmit settings: after using FormSubmit, confirm via email to activate -->
+        <input type="hidden" name="_subject" value="New message from your portfolio">
+        <input type="hidden" name="_captcha" value="false">
+        <label class="small">Name</label><br><input class="form-input" required name="name" placeholder="Your name"><br><br>
+        <label class="small">Email</label><br><input class="form-input" required name="email" placeholder="you@example.com"><br><br>
+        <label class="small">Message</label><br><textarea class="form-input" required name="message" placeholder="Message" style="min-height:140px"></textarea><br><br>
+        <button class="btn" type="submit">Send message</button>
+        <div id="contactMsg" class="small" style="margin-top:10px;display:none"></div>
+      </form>
+      <p class="small" style="margin-top:10px">This form uses FormSubmit.co. After first use, check your email inbox to confirm and enable submissions.</p>
+    </div>
+  </main>
+
+  <footer class="footer container">Built with ❤️ • Nutrition Label QA Automation • Deploy on Vercel</footer>
+
+  <script src="assets/shared.js"></script>
+</body>
+</html>
